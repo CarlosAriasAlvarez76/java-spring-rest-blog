@@ -17,6 +17,10 @@ public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Version
+    private Long version;
+    @NotNull
+    @Size(min = 4, max = 100)
     private String title;
     @Column(length=1000000)
     @Lob
@@ -26,6 +30,14 @@ public class Post {
     private Date date;
     @ManyToOne(fetch = FetchType.EAGER)
     private Author author;
+
+    public Long getVersion() {
+        return version;
+    }
+
+    public void setVersion(Long version) {
+        this.version = version;
+    }
 
     public Author getAuthor() {
         return author;
